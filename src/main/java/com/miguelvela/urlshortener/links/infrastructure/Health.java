@@ -9,7 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class Health {
     @GetMapping("/health")
-    public ResponseEntity<String> health() {
-        return new ResponseEntity<>("Up and running!", HttpStatus.OK);
+    public ResponseEntity<HealthStatus> health() {
+        HealthStatus status = new HealthStatus("Up and running!");
+        return new ResponseEntity<>(status, HttpStatus.OK);
+    }
+
+    private static class HealthStatus {
+        private String status;
+
+        public HealthStatus(String message) {
+            this.status = message;
+        }
     }
 }
