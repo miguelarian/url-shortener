@@ -26,19 +26,13 @@ public class LinksControllerTest {
     @Mock
     LinksService linksService;
 
-    private static List<Link> testLinks;
-
-    @BeforeAll
-    public static void initializeInMemoryLinks() {
-        testLinks = new ArrayList<>(Arrays.asList(
+    @Test
+    void getAll_returnsAllLinks() {
+        List<Link> testLinks = new ArrayList<>(Arrays.asList(
                 new Link("https://google.com", "Google"),
                 new Link("https://amazon.com", "Amazon"),
                 new Link("https://linkedin.com", "LinkedIn")
         ));
-    }
-
-    @Test
-    void getAll_returnsAllLinks() {
 
         when(linksService.getAllLinks()).thenReturn(testLinks);
 
