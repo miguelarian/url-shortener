@@ -5,6 +5,6 @@ import com.miguelvela.urlshortener.links.domain.Link;
 import java.util.List;
 
 public interface LinksService {
-    List<Link> GetAllLinks();
-    Link GetLinkById(String linkId);
+    List<Link> getAllLinks();
+    Link getLinkById(String linkId);
 }

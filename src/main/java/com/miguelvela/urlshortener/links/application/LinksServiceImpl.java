@@ -14,13 +14,13 @@ public class LinksServiceImpl implements LinksService {
     private LinksRepository linksRepository;
 
     @Override
-    public List<Link> GetAllLinks() {
+    public List<Link> getAllLinks() {
 
         return linksRepository.GetLinks();
     }
 
     @Override
-    public Link GetLinkById(String linkId) {
+    public Link getLinkById(String linkId) {
 
         return linksRepository.GetByLinkId(linkId);
     }

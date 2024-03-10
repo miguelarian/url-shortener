@@ -18,7 +18,7 @@ public class LinksController {
 
         return ResponseEntity
                 .ok()
-                .body(this.linksService.GetAllLinks());
+                .body(this.linksService.getAllLinks());
     }
 
     @GetMapping("/links/{linkId}")
@@ -30,7 +30,7 @@ public class LinksController {
                     .build();
         }
 
-        Link linkRequested = this.linksService.GetLinkById(linkId);
+        Link linkRequested = this.linksService.getLinkById(linkId);
 
         if (linkRequested == null) {
             return ResponseEntity

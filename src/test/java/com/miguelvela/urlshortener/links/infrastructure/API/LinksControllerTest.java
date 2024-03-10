@@ -40,12 +40,12 @@ public class LinksControllerTest {
     @Test
     void getAll_returnsAllLinks() {
 
-        when(linksService.GetAllLinks()).thenReturn(testLinks);
+        when(linksService.getAllLinks()).thenReturn(testLinks);
 
         ResponseEntity<List<Link>> responseEntity = linksController.getAll();
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(linksService, times(1)).GetAllLinks();
+        verify(linksService, times(1)).getAllLinks();
 
         List<Link> linksReturned = responseEntity.getBody();
         assertThat(linksReturned).isNotNull();
@@ -58,12 +58,12 @@ public class LinksControllerTest {
         String linkId = "Example";
         String linkUrl = "http://example.com";
         Link linkMock = new Link(linkUrl, linkId);
-        when(linksService.GetLinkById(linkId)).thenReturn(linkMock);
+        when(linksService.getLinkById(linkId)).thenReturn(linkMock);
 
         ResponseEntity<Link> responseEntity = linksController.getById(linkId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(linksService, times(1)).GetLinkById(linkId);
+        verify(linksService, times(1)).getLinkById(linkId);
 
         Link linkReturned = responseEntity.getBody();
         assertThat(linkReturned).isNotNull();
@@ -75,7 +75,7 @@ public class LinksControllerTest {
     void getById_withNoExistingLinkId_notFoundResponse() {
 
         String linkId = "Example";
-        when(linksService.GetLinkById(linkId)).thenReturn(null);
+        when(linksService.getLinkById(linkId)).thenReturn(null);
 
         ResponseEntity<Link> responseEntity = linksController.getById(linkId);
 
