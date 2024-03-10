@@ -1,4 +1,4 @@
-package com.miguelvela.urlshortener.links.infrastructure;
+package com.miguelvela.urlshortener.links.infrastructure.API;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
