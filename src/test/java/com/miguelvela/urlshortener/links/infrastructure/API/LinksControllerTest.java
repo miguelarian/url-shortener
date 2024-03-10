@@ -2,7 +2,6 @@ package com.miguelvela.urlshortener.links.infrastructure.API;
 
 import com.miguelvela.urlshortener.links.application.LinksService;
 import com.miguelvela.urlshortener.links.domain.Link;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
