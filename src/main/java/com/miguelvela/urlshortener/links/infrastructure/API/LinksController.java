@@ -14,9 +14,11 @@ public class LinksController {
     private LinksService linksService;
 
     @GetMapping("/links")
-    public List<Link> getAll() {
+    public ResponseEntity<List<Link>> getAll() {
 
-        return this.linksService.GetAllLinks();
+        return ResponseEntity
+                .ok()
+                .body(this.linksService.GetAllLinks());
     }
 
     @GetMapping("/links/{linkId}")
