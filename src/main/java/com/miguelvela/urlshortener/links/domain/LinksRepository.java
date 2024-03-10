@@ -1,4 +1,4 @@
-package com.miguelvela.urlshortener.links.infrastructure.Persistence;
+package com.miguelvela.urlshortener.links.domain;
 
 import com.miguelvela.urlshortener.links.domain.Link;
 
