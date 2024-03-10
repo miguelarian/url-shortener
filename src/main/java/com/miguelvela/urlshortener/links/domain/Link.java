@@ -1,11 +1,11 @@
 package com.miguelvela.urlshortener.links.domain;
 public class Link {
     private String Url;
-    private String Link;
+    private String LinkId;
 
     public Link(String url, String link) {
         Url = url;
-        Link = link;
+        LinkId = link;
     }
 
     public String getUrl() {
@@ -16,11 +16,11 @@ public class Link {
         Url = url;
     }
 
-    public String getLink() {
-        return Link;
+    public String getLinkId() {
+        return LinkId;
     }
 
-    public void setLink(String link) {
-        Link = link;
+    public void setLinkId(String linkId) {
+        LinkId = linkId;
     }
 }
