@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class InMemoryLinksRepositoryImpl implements LinksRepository {
 
-    private List<Link> inMemoryLinks = new ArrayList<>(Arrays.asList(
+    private final List<Link> inMemoryLinks = new ArrayList<>(Arrays.asList(
             new Link("https://www.example.com", "Example"),
             new Link("https://www.google.com", "Google"),
             new Link("https://www.github.com", "GitHub")
