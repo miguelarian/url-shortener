@@ -26,7 +26,7 @@ class RedirectControllerTest {
     LinksService linksService;
 
     @Test
-    void redirect_withExistingLink_302redirection() throws URISyntaxException {
+    void redirect_withExistingLink_TemporaryRedirection() throws URISyntaxException {
         String linkId = "Google";
         String linkUrl = "https://google.com";
         Link linkMock = new Link(linkUrl, linkId);
@@ -39,5 +39,18 @@ class RedirectControllerTest {
         verify(linksService, times(1)).getLinkById(linkId);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.TEMPORARY_REDIRECT);
         assertThat(Objects.requireNonNull(responseEntity.getHeaders().getLocation()).toString()).isEqualTo(linkUrl);
+    }
+
+    @Test
+    void redirect_withNonExistingLink_NotFoundResponse() throws URISyntaxException {
+        String linkId = "RANDOM_LINK_ID";
+
+        MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
+        when(linksService.getLinkById(linkId)).thenReturn(null);
+
+        ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, linkId);
+
+        verify(linksService, times(1)).getLinkById(linkId);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
