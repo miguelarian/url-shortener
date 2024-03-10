@@ -1,7 +1,7 @@
 package com.miguelvela.urlshortener.links.application;
 
 import com.miguelvela.urlshortener.links.domain.Link;
-import com.miguelvela.urlshortener.links.infrastructure.Persistence.LinksRepository;
+import com.miguelvela.urlshortener.links.domain.LinksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
