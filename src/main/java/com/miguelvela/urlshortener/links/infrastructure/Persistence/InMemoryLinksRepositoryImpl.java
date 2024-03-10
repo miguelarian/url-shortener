@@ -19,7 +19,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     ));
 
     @Override
-    public List<Link> GetLinks() {
+    public List<Link> getLinks() {
 
         return this.inMemoryLinks
                 .stream()
@@ -28,7 +28,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     }
 
     @Override
-    public Link GetByLinkId(String linkId) {
+    public Link getByLinkId(String linkId) {
 
         LinkVO linkVO = this.inMemoryLinks
                 .stream()

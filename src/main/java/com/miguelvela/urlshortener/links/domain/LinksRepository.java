@@ -3,6 +3,6 @@ package com.miguelvela.urlshortener.links.domain;
 import java.util.List;
 
 public interface LinksRepository {
-    List<Link> GetLinks();
-    Link GetByLinkId(String linkId);
+    List<Link> getLinks();
+    Link getByLinkId(String linkId);
 }

@@ -16,12 +16,12 @@ public class LinksServiceImpl implements LinksService {
     @Override
     public List<Link> getAllLinks() {
 
-        return linksRepository.GetLinks();
+        return linksRepository.getLinks();
     }
 
     @Override
     public Link getLinkById(String linkId) {
 
-        return linksRepository.GetByLinkId(linkId);
+        return linksRepository.getByLinkId(linkId);
     }
 }
