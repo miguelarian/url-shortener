@@ -4,10 +4,9 @@ import com.miguelvela.urlshortener.links.application.LinksService;
 import com.miguelvela.urlshortener.links.domain.Link;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -43,5 +42,15 @@ public class LinksController {
         return ResponseEntity
                 .ok()
                 .body(linkRequested);
+    }
+
+    @PostMapping("/links")
+    public ResponseEntity<Link> createLink(@RequestBody Link newLink) {
+
+        Link linkCreated = this.linksService.addLink(newLink.getUrl(), newLink.getLinkId());
+
+        return ResponseEntity
+                .created(URI.create("/links/" + linkCreated.getLinkId()))
+                .body(linkCreated);
     }
 }
