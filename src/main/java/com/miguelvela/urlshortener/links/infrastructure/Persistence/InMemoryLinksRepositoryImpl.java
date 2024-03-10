@@ -1,6 +1,5 @@
 package com.miguelvela.urlshortener.links.infrastructure.Persistence;
 
-import com.miguelvela.urlshortener.UrlShortenerApplication;
 import com.miguelvela.urlshortener.links.domain.Link;
 import com.miguelvela.urlshortener.links.domain.LinksRepository;
 import org.springframework.stereotype.Repository;
