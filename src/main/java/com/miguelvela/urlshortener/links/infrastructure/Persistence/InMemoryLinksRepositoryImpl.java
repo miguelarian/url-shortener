@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class InMemoryLinksRepository implements LinksRepository {
+public class InMemoryLinksRepositoryImpl implements LinksRepository {
 
     private List<Link> inMemoryLinks = new ArrayList<>(Arrays.asList(
             new Link("https://www.example.com", "Example"),
