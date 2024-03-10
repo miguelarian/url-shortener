@@ -1,26 +1,26 @@
 package com.miguelvela.urlshortener.links.domain;
 public class Link {
-    private String Url;
-    private String LinkId;
+    private String url;
+    private String linkId;
 
     public Link(String url, String link) {
-        Url = url;
-        LinkId = link;
+        this.url = url;
+        linkId = link;
     }
 
     public String getUrl() {
-        return Url;
+        return url;
     }
 
     public void setUrl(String url) {
-        Url = url;
+        this.url = url;
     }
 
     public String getLinkId() {
-        return LinkId;
+        return linkId;
     }
 
     public void setLinkId(String linkId) {
-        LinkId = linkId;
+        this.linkId = linkId;
     }
 }
