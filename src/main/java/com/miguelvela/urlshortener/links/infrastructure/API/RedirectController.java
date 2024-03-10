@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @RestController
 public class RedirectController {
 
@@ -18,7 +21,7 @@ public class RedirectController {
     private LinksService linksService;
 
     @RequestMapping(value = "/redirect/{linkId}", method = RequestMethod.GET)
-    public ResponseEntity redirect(HttpServletResponse httpServletResponse, @PathVariable String linkId) {
+    public ResponseEntity redirect(HttpServletResponse httpServletResponse, @PathVariable String linkId) throws URISyntaxException {
 
         if(linkId == null || linkId.isEmpty()) {
             return  ResponseEntity
@@ -37,7 +40,7 @@ public class RedirectController {
         return redirectTo(linkRequested, httpServletResponse);
     }
 
-    private ResponseEntity redirectTo(Link link,HttpServletResponse httpServletResponse) {
+    private ResponseEntity redirectTo(Link link,HttpServletResponse httpServletResponse) throws URISyntaxException {
 
         String destinationUrl = link.getUrl();
         httpServletResponse.setHeader("Location", destinationUrl);
@@ -45,6 +48,7 @@ public class RedirectController {
 
         return  ResponseEntity
                 .status(HttpStatus.TEMPORARY_REDIRECT)
+                .location(new URI(destinationUrl))
                 .build();
     }
 }
