@@ -43,6 +43,13 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
         return null;
     }
 
+    @Override
+    public Link CreateLink(Link newLink) {
+        LinkVO newLinkVO = new LinkVO(newLink.getUrl(), newLink.getLinkId());
+        this.inMemoryLinks.add(newLinkVO);
+        return newLink;
+    }
+
     private Link mapToDomain(LinkVO linkVO) {
         return new Link(linkVO.getUrl(), linkVO.getLinkId());
     }
