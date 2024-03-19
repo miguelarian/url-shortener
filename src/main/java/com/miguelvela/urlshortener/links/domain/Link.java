@@ -32,6 +32,12 @@ public class Link {
     }
 
     private String calculateUrlHash() {
-        return null;
+
+        if (this.url.isEmpty())
+        {
+            return null;
+        }
+
+        return String.valueOf(this.url.hashCode());
     }
 }
