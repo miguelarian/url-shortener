@@ -21,7 +21,7 @@ public class LinksController {
         List<LinkDto> resultList = this.linksService
                 .getAllLinks()
                 .stream()
-                .map(link -> new LinkDto(link.getUrl(), link.getUrlHash()))
+                .map(LinkDto::fromLink)
                 .toList();
 
         return ResponseEntity
