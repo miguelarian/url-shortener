@@ -63,7 +63,7 @@ public class LinksControllerTest {
     }
 
     @Test
-    void getById_withExistingId_okResponse() {
+    void getByHashUrl_withExistingHashUrl_okResponse() {
 
         String urlHash = "Example";
         String linkUrl = "http://example.com";
@@ -80,7 +80,7 @@ public class LinksControllerTest {
     }
 
     @Test
-    void getById_withNoExistingLinkId_notFoundResponse() {
+    void getByHashUrl_withNoExistingHashUrl_notFoundResponse() {
         String linkId = "Example";
         when(linksService.getByUrlHash(linkId)).thenReturn(null);
 
@@ -90,7 +90,7 @@ public class LinksControllerTest {
     }
 
     @Test
-    void getById_withEmptyLinkId_badRequestResponse() {
+    void getByHashUrl_withEmptyHashUrl_badRequestResponse() {
 
         ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash("");
 
@@ -98,7 +98,7 @@ public class LinksControllerTest {
     }
 
     @Test
-    void getById_withNullLinkId_badRequestResponse() {
+    void getByHashUrl_withNullHashUrl_badRequestResponse() {
 
         ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(null);
 
