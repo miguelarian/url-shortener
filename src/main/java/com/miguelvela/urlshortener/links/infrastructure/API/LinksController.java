@@ -46,14 +46,14 @@ public class LinksController {
     }
 
     @PostMapping("/links")
-    public ResponseEntity<LinkDto> createLink(@RequestBody LinkDto newLink) {
+    public ResponseEntity<LinkDto> createLink(@RequestBody LinkDto linkDto) {
 
-        Link linkCreated = this.linksService.addLink(newLink.url());
+        Link linkCreated = this.linksService.addLink(linkDto.url());
 
         LinkDto responseLink = new LinkDto(linkCreated.getUrl(), linkCreated.getUrlHash());
 
         return ResponseEntity
-                .created(URI.create("/links/" + linkCreated.getUrlHash()))
+                .created(URI.create("/links/" + responseLink.hash()))
                 .body(responseLink);
     }
 }
