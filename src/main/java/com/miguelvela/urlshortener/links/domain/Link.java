@@ -3,9 +3,11 @@ public class Link {
     private String url;
     private String urlHash;
 
+    public static final String DEFAULT_URL_HASH = "";
+
     public Link(String url) {
         this.url = url;
-        this.urlHash = "";
+        this.urlHash = DEFAULT_URL_HASH;
     }
 
     public String getUrl() {
@@ -22,7 +24,7 @@ public class Link {
 
     public String getUrlHash() {
 
-        if (this.urlHash == null || this.urlHash.isEmpty()) {
+        if (this.urlHash.equals(DEFAULT_URL_HASH)) {
             this.urlHash = this.calculateUrlHash();
         }
 
