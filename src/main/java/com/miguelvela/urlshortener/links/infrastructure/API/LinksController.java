@@ -46,11 +46,9 @@ public class LinksController {
                     .build();
         }
 
-        LinkDto responseLink = new LinkDto(linkRequested.getUrl(), linkRequested.getUrlHash());
-
         return ResponseEntity
                 .ok()
-                .body(responseLink);
+                .body(LinkDto.fromLink(linkRequested));
     }
 
     @PostMapping("/links")
@@ -58,7 +56,7 @@ public class LinksController {
 
         Link linkCreated = this.linksService.addLink(linkDto.url());
 
-        LinkDto responseLink = new LinkDto(linkCreated.getUrl(), linkCreated.getUrlHash());
+        LinkDto responseLink = LinkDto.fromLink(linkCreated);
 
         return ResponseEntity
                 .created(URI.create("/links/" + responseLink.hash()))
