@@ -16,18 +16,18 @@ public class LinksServiceImpl implements LinksService {
     @Override
     public List<Link> getAllLinks() {
 
-        return linksRepository.getLinks();
+        return linksRepository.getAll();
     }
 
     @Override
     public Link getLinkById(String linkId) {
 
-        return linksRepository.getByLinkId(linkId);
+        return linksRepository.getByUrlHash(linkId);
     }
 
     @Override
     public Link addLink(String url) {
         Link newLink = new Link(url);
-        return this.linksRepository.createLink(newLink);
+        return this.linksRepository.create(newLink);
     }
 }

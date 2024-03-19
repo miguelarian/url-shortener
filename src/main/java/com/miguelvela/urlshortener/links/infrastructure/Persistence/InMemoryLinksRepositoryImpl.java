@@ -19,7 +19,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     ));
 
     @Override
-    public List<Link> getLinks() {
+    public List<Link> getAll() {
 
         return this.inMemoryLinks
                 .stream()
@@ -28,11 +28,11 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     }
 
     @Override
-    public Link getByLinkId(String linkId) {
+    public Link getByUrlHash(String urlHash) {
 
         LinkVO linkVO = this.inMemoryLinks
                 .stream()
-                .filter(link -> link.getLinkId().equals(linkId))
+                .filter(link -> link.getLinkId().equals(urlHash))
                 .findFirst()
                 .orElse(null);
 
@@ -44,7 +44,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     }
 
     @Override
-    public Link createLink(Link newLink) {
+    public Link create(Link newLink) {
         LinkVO newLinkVO = new LinkVO(newLink.getUrl(), newLink.getUrlHash());
         this.inMemoryLinks.add(newLinkVO);
         return newLink;
