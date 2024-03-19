@@ -33,13 +33,13 @@ public class LinksControllerTest {
                 new Link("https://amazon.com"),
                 new Link("https://linkedin.com")
         ));
-        when(linksService.getAllLinks()).thenReturn(testLinks);
+        when(linksService.getAll()).thenReturn(testLinks);
 
 
         ResponseEntity<List<LinkDto>> responseEntity = linksController.getAll();
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(linksService, times(1)).getAllLinks();
+        verify(linksService, times(1)).getAll();
         List<LinkDto> linksReturned = responseEntity.getBody();
         assertThat(linksReturned).isNotNull();
         assertThat(linksReturned.size()).isEqualTo(testLinks.size());
@@ -51,12 +51,12 @@ public class LinksControllerTest {
     @Test
     void getAll_withNoLinks_returnsEmptyList() {
         List<Link> testLinks = new ArrayList<>();
-        when(linksService.getAllLinks()).thenReturn(testLinks);
+        when(linksService.getAll()).thenReturn(testLinks);
 
         ResponseEntity<List<LinkDto>> responseEntity = linksController.getAll();
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(linksService, times(1)).getAllLinks();
+        verify(linksService, times(1)).getAll();
         List<LinkDto> linksReturned = responseEntity.getBody();
         assertThat(linksReturned).isNotNull();
         assertThat(linksReturned.size()).isEqualTo(0);
@@ -68,12 +68,12 @@ public class LinksControllerTest {
         String linkId = "Example";
         String linkUrl = "http://example.com";
         Link linkMock = new Link(linkUrl);
-        when(linksService.getLinkById(linkId)).thenReturn(linkMock);
+        when(linksService.getByUrlHash(linkId)).thenReturn(linkMock);
 
         ResponseEntity<LinkDto> responseEntity = linksController.getById(linkId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(linksService, times(1)).getLinkById(linkId);
+        verify(linksService, times(1)).getByUrlHash(linkId);
         LinkDto linkReturned = responseEntity.getBody();
         assertThat(linkReturned).isNotNull();
         assertThat(linkReturned.url()).isEqualTo(linkUrl);
@@ -82,7 +82,7 @@ public class LinksControllerTest {
     @Test
     void getById_withNoExistingLinkId_notFoundResponse() {
         String linkId = "Example";
-        when(linksService.getLinkById(linkId)).thenReturn(null);
+        when(linksService.getByUrlHash(linkId)).thenReturn(null);
 
         ResponseEntity<LinkDto> responseEntity = linksController.getById(linkId);
 

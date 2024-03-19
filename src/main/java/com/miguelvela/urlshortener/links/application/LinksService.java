@@ -5,7 +5,7 @@ import com.miguelvela.urlshortener.links.domain.Link;
 import java.util.List;
 
 public interface LinksService {
-    List<Link> getAllLinks();
-    Link getLinkById(String linkId);
-    Link addLink(String linkUrl);
+    List<Link> getAll();
+    Link getByUrlHash(String urlHash);
+    Link addLink(String url);
 }

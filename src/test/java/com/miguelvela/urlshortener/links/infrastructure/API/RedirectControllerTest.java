@@ -32,11 +32,11 @@ class RedirectControllerTest {
         Link linkMock = new Link(linkUrl);
 
         MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
-        when(linksService.getLinkById(linkId)).thenReturn(linkMock);
+        when(linksService.getByUrlHash(linkId)).thenReturn(linkMock);
 
         ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, linkId);
 
-        verify(linksService, times(1)).getLinkById(linkId);
+        verify(linksService, times(1)).getByUrlHash(linkId);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.TEMPORARY_REDIRECT);
         assertThat(Objects.requireNonNull(responseEntity.getHeaders().getLocation()).toString()).isEqualTo(linkUrl);
     }
@@ -46,11 +46,11 @@ class RedirectControllerTest {
         String linkId = "RANDOM_LINK_ID";
 
         MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
-        when(linksService.getLinkById(linkId)).thenReturn(null);
+        when(linksService.getByUrlHash(linkId)).thenReturn(null);
 
         ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, linkId);
 
-        verify(linksService, times(1)).getLinkById(linkId);
+        verify(linksService, times(1)).getByUrlHash(linkId);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }

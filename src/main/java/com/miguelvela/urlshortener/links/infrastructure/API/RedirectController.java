@@ -29,7 +29,7 @@ public class RedirectController {
                     .build();
         }
 
-        Link linkRequested = this.linksService.getLinkById(linkId);
+        Link linkRequested = this.linksService.getByUrlHash(linkId);
 
         if (linkRequested == null) {
             return ResponseEntity

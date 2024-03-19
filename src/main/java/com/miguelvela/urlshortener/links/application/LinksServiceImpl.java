@@ -14,15 +14,15 @@ public class LinksServiceImpl implements LinksService {
     private LinksRepository linksRepository;
 
     @Override
-    public List<Link> getAllLinks() {
+    public List<Link> getAll() {
 
         return linksRepository.getAll();
     }
 
     @Override
-    public Link getLinkById(String linkId) {
+    public Link getByUrlHash(String urlHash) {
 
-        return linksRepository.getByUrlHash(linkId);
+        return linksRepository.getByUrlHash(urlHash);
     }
 
     @Override

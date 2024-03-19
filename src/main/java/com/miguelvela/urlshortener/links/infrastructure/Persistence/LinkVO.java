@@ -3,19 +3,19 @@ package com.miguelvela.urlshortener.links.infrastructure.Persistence;
 public class LinkVO {
 
     private String url;
-    private String linkId;
+    private String urlHash;
 
-    public LinkVO(String url, String linkId) {
+    public LinkVO(String url, String urlHash) {
         this.url = url;
-        this.linkId = linkId;
+        this.urlHash = urlHash;
     }
 
-    public String getLinkId() {
-        return linkId;
+    public String getUrlHash() {
+        return urlHash;
     }
 
-    public void setLinkId(String linkId) {
-        this.linkId = linkId;
+    public void setUrlHash(String urlHash) {
+        this.urlHash = urlHash;
     }
 
     public String getUrl() {

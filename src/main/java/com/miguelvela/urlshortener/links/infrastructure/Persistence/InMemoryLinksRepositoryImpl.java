@@ -32,7 +32,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
 
         LinkVO linkVO = this.inMemoryLinks
                 .stream()
-                .filter(link -> link.getLinkId().equals(urlHash))
+                .filter(link -> link.getUrlHash().equals(urlHash))
                 .findFirst()
                 .orElse(null);
 

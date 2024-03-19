@@ -19,7 +19,7 @@ public class LinksController {
     public ResponseEntity<List<LinkDto>> getAll() {
 
         List<LinkDto> resultList = this.linksService
-                .getAllLinks()
+                .getAll()
                 .stream()
                 .map(LinkDto::fromLink)
                 .toList();
@@ -38,7 +38,7 @@ public class LinksController {
                     .build();
         }
 
-        Link linkRequested = this.linksService.getLinkById(urlHash);
+        Link linkRequested = this.linksService.getByUrlHash(urlHash);
 
         if (linkRequested == null) {
             return ResponseEntity
