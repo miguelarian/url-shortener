@@ -2,6 +2,7 @@ package com.miguelvela.urlshortener.links.infrastructure.API;
 
 import com.miguelvela.urlshortener.links.application.LinksService;
 import com.miguelvela.urlshortener.links.domain.Link;
+import com.miguelvela.urlshortener.links.infrastructure.API.dto.LinkDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,12 +36,12 @@ public class LinksControllerTest {
 
         when(linksService.getAllLinks()).thenReturn(testLinks);
 
-        ResponseEntity<List<Link>> responseEntity = linksController.getAll();
+        ResponseEntity<List<LinkDto>> responseEntity = linksController.getAll();
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         verify(linksService, times(1)).getAllLinks();
 
-        List<Link> linksReturned = responseEntity.getBody();
+        List<LinkDto> linksReturned = responseEntity.getBody();
         assertThat(linksReturned).isNotNull();
         assertThat(linksReturned.size()).isEqualTo(testLinks.size());
     }
@@ -53,14 +54,14 @@ public class LinksControllerTest {
         Link linkMock = new Link(linkUrl);
         when(linksService.getLinkById(linkId)).thenReturn(linkMock);
 
-        ResponseEntity<Link> responseEntity = linksController.getById(linkId);
+        ResponseEntity<LinkDto> responseEntity = linksController.getById(linkId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         verify(linksService, times(1)).getLinkById(linkId);
 
-        Link linkReturned = responseEntity.getBody();
+        LinkDto linkReturned = responseEntity.getBody();
         assertThat(linkReturned).isNotNull();
-        assertThat(linkReturned.getUrl()).isEqualTo(linkUrl);
+        assertThat(linkReturned.url()).isEqualTo(linkUrl);
     }
 
     @Test
@@ -69,7 +70,7 @@ public class LinksControllerTest {
         String linkId = "Example";
         when(linksService.getLinkById(linkId)).thenReturn(null);
 
-        ResponseEntity<Link> responseEntity = linksController.getById(linkId);
+        ResponseEntity<LinkDto> responseEntity = linksController.getById(linkId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
@@ -77,7 +78,7 @@ public class LinksControllerTest {
     @Test
     void getById_withEmptyLinkId_badRequestResponse() {
 
-        ResponseEntity<Link> responseEntity = linksController.getById("");
+        ResponseEntity<LinkDto> responseEntity = linksController.getById("");
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
@@ -85,7 +86,7 @@ public class LinksControllerTest {
     @Test
     void getById_withNullLinkId_badRequestResponse() {
 
-        ResponseEntity<Link> responseEntity = linksController.getById(null);
+        ResponseEntity<LinkDto> responseEntity = linksController.getById(null);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }

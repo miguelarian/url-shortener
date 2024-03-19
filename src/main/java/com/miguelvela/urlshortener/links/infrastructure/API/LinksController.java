@@ -16,23 +16,29 @@ public class LinksController {
     private LinksService linksService;
 
     @GetMapping("/links")
-    public ResponseEntity<List<Link>> getAll() {
+    public ResponseEntity<List<LinkDto>> getAll() {
+
+        List<LinkDto> resultList = this.linksService
+                .getAllLinks()
+                .stream()
+                .map(link -> new LinkDto(link.getUrl(), link.getUrlHash()))
+                .toList();
 
         return ResponseEntity
                 .ok()
-                .body(this.linksService.getAllLinks());
+                .body(resultList);
     }
 
-    @GetMapping("/links/{linkId}")
-    public ResponseEntity<Link> getById(@PathVariable String linkId) {
+    @GetMapping("/links/{urlHash}")
+    public ResponseEntity<LinkDto> getById(@PathVariable String urlHash) {
 
-        if(linkId == null || linkId.isEmpty()) {
+        if(urlHash == null || urlHash.isEmpty()) {
             return  ResponseEntity
                     .badRequest()
                     .build();
         }
 
-        Link linkRequested = this.linksService.getLinkById(linkId);
+        Link linkRequested = this.linksService.getLinkById(urlHash);
 
         if (linkRequested == null) {
             return ResponseEntity
@@ -40,9 +46,11 @@ public class LinksController {
                     .build();
         }
 
+        LinkDto responseLink = new LinkDto(linkRequested.getUrl(), linkRequested.getUrlHash());
+
         return ResponseEntity
                 .ok()
-                .body(linkRequested);
+                .body(responseLink);
     }
 
     @PostMapping("/links")
