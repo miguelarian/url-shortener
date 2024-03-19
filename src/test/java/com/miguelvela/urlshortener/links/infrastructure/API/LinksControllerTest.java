@@ -27,7 +27,7 @@ public class LinksControllerTest {
     LinksService linksService;
 
     @Test
-    void getAll_returnsAllLinks() {
+    void getAll_withMemoryLinks_returnsAllLinks() {
         List<Link> testLinks = new ArrayList<>(Arrays.asList(
                 new Link("https://google.com"),
                 new Link("https://amazon.com"),
