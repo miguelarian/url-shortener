@@ -28,13 +28,14 @@ public class Link {
             this.urlHash = this.calculateUrlHash();
         }
 
-        return urlHash;
+        return this.urlHash;
     }
 
     private String calculateUrlHash() {
 
         if (this.url.isEmpty())
         {
+            // TODO: This should throw an exception
             return null;
         }
 
