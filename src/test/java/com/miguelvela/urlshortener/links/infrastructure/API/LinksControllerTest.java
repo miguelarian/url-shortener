@@ -81,10 +81,10 @@ public class LinksControllerTest {
 
     @Test
     void getByHashUrl_withNoExistingHashUrl_notFoundResponse() {
-        String linkId = "Example";
-        when(linksService.getByUrlHash(linkId)).thenReturn(null);
+        String hashUrl = "Example";
+        when(linksService.getByUrlHash(hashUrl)).thenReturn(null);
 
-        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(linkId);
+        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(hashUrl);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
