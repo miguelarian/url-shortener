@@ -43,7 +43,7 @@ class RedirectControllerTest {
 
     @Test
     void redirect_withNonExistingLink_NotFoundResponse() throws URISyntaxException {
-        String urlHash = "RANDOM_LINK_ID";
+        String urlHash = "RANDOM_LINK_HASH";
 
         MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
         when(linksService.getByUrlHash(urlHash)).thenReturn(null);
