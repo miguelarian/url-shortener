@@ -2,6 +2,7 @@ package com.miguelvela.urlshortener.links.infrastructure.API;
 
 import com.miguelvela.urlshortener.links.application.LinksService;
 import com.miguelvela.urlshortener.links.domain.Link;
+import com.miguelvela.urlshortener.links.infrastructure.API.dto.LinkDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,12 +46,14 @@ public class LinksController {
     }
 
     @PostMapping("/links")
-    public ResponseEntity<Link> createLink(@RequestBody Link newLink) {
+    public ResponseEntity<LinkDto> createLink(@RequestBody LinkDto newLink) {
 
-        Link linkCreated = this.linksService.addLink(newLink.getUrl());
+        Link linkCreated = this.linksService.addLink(newLink.url());
+
+        LinkDto responseLink = new LinkDto(linkCreated.getUrl(), linkCreated.getUrlHash());
 
         return ResponseEntity
                 .created(URI.create("/links/" + linkCreated.getUrlHash()))
-                .body(linkCreated);
+                .body(responseLink);
     }
 }
