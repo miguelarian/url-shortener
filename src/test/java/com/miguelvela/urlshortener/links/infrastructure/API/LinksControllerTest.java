@@ -70,7 +70,7 @@ public class LinksControllerTest {
         Link linkMock = new Link(linkUrl);
         when(linksService.getByUrlHash(linkId)).thenReturn(linkMock);
 
-        ResponseEntity<LinkDto> responseEntity = linksController.getById(linkId);
+        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(linkId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         verify(linksService, times(1)).getByUrlHash(linkId);
@@ -84,7 +84,7 @@ public class LinksControllerTest {
         String linkId = "Example";
         when(linksService.getByUrlHash(linkId)).thenReturn(null);
 
-        ResponseEntity<LinkDto> responseEntity = linksController.getById(linkId);
+        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(linkId);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
@@ -92,7 +92,7 @@ public class LinksControllerTest {
     @Test
     void getById_withEmptyLinkId_badRequestResponse() {
 
-        ResponseEntity<LinkDto> responseEntity = linksController.getById("");
+        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash("");
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
@@ -100,7 +100,7 @@ public class LinksControllerTest {
     @Test
     void getById_withNullLinkId_badRequestResponse() {
 
-        ResponseEntity<LinkDto> responseEntity = linksController.getById(null);
+        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(null);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }

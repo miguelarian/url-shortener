@@ -30,7 +30,7 @@ public class LinksController {
     }
 
     @GetMapping("/links/{urlHash}")
-    public ResponseEntity<LinkDto> getById(@PathVariable String urlHash) {
+    public ResponseEntity<LinkDto> getByUrlHash(@PathVariable String urlHash) {
 
         if(urlHash == null || urlHash.isEmpty()) {
             return  ResponseEntity
