@@ -5,13 +5,14 @@ public class Link {
 
     public Link(String url) {
         this.url = url;
+        this.urlHash = "";
     }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    private void setUrl(String url) {
         this.url = url;
     }
 
