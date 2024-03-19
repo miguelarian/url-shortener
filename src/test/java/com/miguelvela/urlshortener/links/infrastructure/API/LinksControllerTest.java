@@ -104,4 +104,37 @@ public class LinksControllerTest {
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
+
+    @Test
+    void createLink_withEmptyLinkUrl_badRequestResponse() {
+        LinkDto requestLinkDto = new LinkDto("", "");
+
+        ResponseEntity<LinkDto> responseEntity = linksController.createLink(requestLinkDto);
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+    @Test
+    void createLink_withInvalidLinkUrl_badRequestResponse() {
+        String url = "http://invalid-url";
+        LinkDto requestLinkDto = new LinkDto(url, "");
+
+        ResponseEntity<LinkDto> responseEntity = linksController.createLink(requestLinkDto);
+
+        verify(linksService, never()).addLink(anyString());
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+    }
+
+    @Test
+    void createLink_withValidLinkUrl_SuccessResponse() {
+        String url = "http://www.test.example.com";
+        LinkDto requestLinkDto = new LinkDto(url, "");
+        Link linkMock = new Link(url);
+        when(linksService.addLink(url)).thenReturn(linkMock);
+
+        ResponseEntity<LinkDto> responseEntity = linksController.createLink(requestLinkDto);
+
+        verify(linksService, times(1)).addLink(url);
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(responseEntity.getHeaders().getLocation().toString()).isEqualTo("/links/1582525482");
+    }
 }

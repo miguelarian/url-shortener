@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RestController
 public class LinksController {
@@ -54,6 +57,15 @@ public class LinksController {
     @PostMapping("/links")
     public ResponseEntity<LinkDto> createLink(@RequestBody LinkDto linkDto) {
 
+        if(linkDto == null
+            || linkDto.url().isEmpty()
+            || !validateUrl(linkDto.url()))
+        {
+            return  ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
         Link linkCreated = this.linksService.addLink(linkDto.url());
 
         LinkDto responseLink = LinkDto.fromLink(linkCreated);
@@ -61,5 +73,12 @@ public class LinksController {
         return ResponseEntity
                 .created(URI.create("/links/" + responseLink.hash()))
                 .body(responseLink);
+    }
+
+    private boolean validateUrl(String url) {
+        final String URL_PATTERN = "^((https?|ftp)://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,}){1,}(\\/\\S*)?$";
+        Pattern pattern = Pattern.compile(URL_PATTERN);
+
+        return pattern.matcher(url).matches();
     }
 }
