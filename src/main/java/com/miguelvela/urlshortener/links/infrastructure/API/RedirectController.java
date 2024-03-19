@@ -20,16 +20,16 @@ public class RedirectController {
     @Autowired
     private LinksService linksService;
 
-    @RequestMapping(value = "/redirect/{linkId}", method = RequestMethod.GET)
-    public ResponseEntity redirect(HttpServletResponse httpServletResponse, @PathVariable String linkId) throws URISyntaxException {
+    @RequestMapping(value = "/redirect/{urlHash}", method = RequestMethod.GET)
+    public ResponseEntity redirect(HttpServletResponse httpServletResponse, @PathVariable String urlHash) throws URISyntaxException {
 
-        if(linkId == null || linkId.isEmpty()) {
+        if(urlHash == null || urlHash.isEmpty()) {
             return  ResponseEntity
                     .badRequest()
                     .build();
         }
 
-        Link linkRequested = this.linksService.getByUrlHash(linkId);
+        Link linkRequested = this.linksService.getByUrlHash(urlHash);
 
         if (linkRequested == null) {
             return ResponseEntity

@@ -65,15 +65,15 @@ public class LinksControllerTest {
     @Test
     void getById_withExistingId_okResponse() {
 
-        String linkId = "Example";
+        String urlHash = "Example";
         String linkUrl = "http://example.com";
         Link linkMock = new Link(linkUrl);
-        when(linksService.getByUrlHash(linkId)).thenReturn(linkMock);
+        when(linksService.getByUrlHash(urlHash)).thenReturn(linkMock);
 
-        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(linkId);
+        ResponseEntity<LinkDto> responseEntity = linksController.getByUrlHash(urlHash);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        verify(linksService, times(1)).getByUrlHash(linkId);
+        verify(linksService, times(1)).getByUrlHash(urlHash);
         LinkDto linkReturned = responseEntity.getBody();
         assertThat(linkReturned).isNotNull();
         assertThat(linkReturned.url()).isEqualTo(linkUrl);

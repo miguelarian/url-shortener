@@ -27,30 +27,30 @@ class RedirectControllerTest {
 
     @Test
     void redirect_withExistingLink_TemporaryRedirection() throws URISyntaxException {
-        String linkId = "Google";
+        String urlHash = "Google";
         String linkUrl = "https://google.com";
         Link linkMock = new Link(linkUrl);
 
         MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
-        when(linksService.getByUrlHash(linkId)).thenReturn(linkMock);
+        when(linksService.getByUrlHash(urlHash)).thenReturn(linkMock);
 
-        ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, linkId);
+        ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, urlHash);
 
-        verify(linksService, times(1)).getByUrlHash(linkId);
+        verify(linksService, times(1)).getByUrlHash(urlHash);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.TEMPORARY_REDIRECT);
         assertThat(Objects.requireNonNull(responseEntity.getHeaders().getLocation()).toString()).isEqualTo(linkUrl);
     }
 
     @Test
     void redirect_withNonExistingLink_NotFoundResponse() throws URISyntaxException {
-        String linkId = "RANDOM_LINK_ID";
+        String urlHash = "RANDOM_LINK_ID";
 
         MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
-        when(linksService.getByUrlHash(linkId)).thenReturn(null);
+        when(linksService.getByUrlHash(urlHash)).thenReturn(null);
 
-        ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, linkId);
+        ResponseEntity responseEntity = redirectController.redirect(httpServletResponse, urlHash);
 
-        verify(linksService, times(1)).getByUrlHash(linkId);
+        verify(linksService, times(1)).getByUrlHash(urlHash);
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
