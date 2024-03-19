@@ -15,7 +15,7 @@ class LinkTests {
 
 		String hash = link.getUrlHash();
 
-		assertNull(hash);
+		assertNull(hash, "The url hash should be null");
 	}
 
 	@Test
@@ -25,7 +25,7 @@ class LinkTests {
 
 		String hash = link.getUrlHash();
 
-		assertNotNull(hash);
+		assertNotNull(hash, "The url has should not be null");
 	}
 
 	@Test
