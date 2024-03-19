@@ -3,8 +3,6 @@ public class Link {
     private String url;
     private String linkId;
 
-    public Link() {}
-
     public Link(String url) {
         this.url = url;
     }
