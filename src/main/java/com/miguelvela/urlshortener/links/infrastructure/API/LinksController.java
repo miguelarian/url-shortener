@@ -50,7 +50,7 @@ public class LinksController {
         Link linkCreated = this.linksService.addLink(newLink.getUrl());
 
         return ResponseEntity
-                .created(URI.create("/links/" + linkCreated.getLinkId()))
+                .created(URI.create("/links/" + linkCreated.getUrlHash()))
                 .body(linkCreated);
     }
 }
