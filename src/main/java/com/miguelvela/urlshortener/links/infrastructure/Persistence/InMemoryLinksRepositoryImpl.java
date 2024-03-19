@@ -51,6 +51,6 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     }
 
     private Link mapToDomain(LinkVO linkVO) {
-        return new Link(linkVO.getUrl());
+        return new Link(linkVO.getUrl(), linkVO.getUrlHash());
     }
 }

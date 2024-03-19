@@ -10,6 +10,11 @@ public class Link {
         this.urlHash = DEFAULT_URL_HASH;
     }
 
+    public Link(String url, String urlHash) {
+        this.url = url;
+        this.urlHash = urlHash;
+    }
+
     public String getUrl() {
         return url;
     }
