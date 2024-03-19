@@ -3,8 +3,10 @@ public class Link {
     private String url;
     private String linkId;
 
-    public Link() {
+    public Link() {}
 
+    public Link(String url) {
+        this.url = url;
     }
     public Link(String url, String link) {
         this.url = url;
@@ -25,5 +27,9 @@ public class Link {
 
     public void setLinkId(String linkId) {
         this.linkId = linkId;
+    }
+
+    public String getUrlHash() {
+        return null;
     }
 }
