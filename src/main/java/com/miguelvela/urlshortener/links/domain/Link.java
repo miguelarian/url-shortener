@@ -6,10 +6,6 @@ public class Link {
     public Link(String url) {
         this.url = url;
     }
-    public Link(String url, String link) {
-        this.url = url;
-        linkId = link;
-    }
 
     public String getUrl() {
         return url;

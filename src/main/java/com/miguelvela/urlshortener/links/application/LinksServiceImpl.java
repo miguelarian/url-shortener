@@ -26,8 +26,8 @@ public class LinksServiceImpl implements LinksService {
     }
 
     @Override
-    public Link addLink(String linkUrl, String linkId) {
-        Link newLink = new Link(linkUrl, linkId);
+    public Link addLink(String linkUrl) {
+        Link newLink = new Link(linkUrl);
         return this.linksRepository.createLink(newLink);
     }
 }

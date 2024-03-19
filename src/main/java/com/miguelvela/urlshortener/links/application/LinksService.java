@@ -7,5 +7,5 @@ import java.util.List;
 public interface LinksService {
     List<Link> getAllLinks();
     Link getLinkById(String linkId);
-    Link addLink(String linkUrl, String linkId);
+    Link addLink(String linkUrl);
 }

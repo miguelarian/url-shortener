@@ -28,9 +28,9 @@ public class LinksControllerTest {
     @Test
     void getAll_returnsAllLinks() {
         List<Link> testLinks = new ArrayList<>(Arrays.asList(
-                new Link("https://google.com", "Google"),
-                new Link("https://amazon.com", "Amazon"),
-                new Link("https://linkedin.com", "LinkedIn")
+                new Link("https://google.com"),
+                new Link("https://amazon.com"),
+                new Link("https://linkedin.com")
         ));
 
         when(linksService.getAllLinks()).thenReturn(testLinks);
@@ -50,7 +50,7 @@ public class LinksControllerTest {
 
         String linkId = "Example";
         String linkUrl = "http://example.com";
-        Link linkMock = new Link(linkUrl, linkId);
+        Link linkMock = new Link(linkUrl);
         when(linksService.getLinkById(linkId)).thenReturn(linkMock);
 
         ResponseEntity<Link> responseEntity = linksController.getById(linkId);
@@ -60,7 +60,6 @@ public class LinksControllerTest {
 
         Link linkReturned = responseEntity.getBody();
         assertThat(linkReturned).isNotNull();
-        assertThat(linkReturned.getLinkId()).isEqualTo(linkId);
         assertThat(linkReturned.getUrl()).isEqualTo(linkUrl);
     }
 

@@ -29,7 +29,7 @@ class RedirectControllerTest {
     void redirect_withExistingLink_TemporaryRedirection() throws URISyntaxException {
         String linkId = "Google";
         String linkUrl = "https://google.com";
-        Link linkMock = new Link(linkUrl, linkId);
+        Link linkMock = new Link(linkUrl);
 
         MockHttpServletResponse httpServletResponse = new MockHttpServletResponse();
         when(linksService.getLinkById(linkId)).thenReturn(linkMock);

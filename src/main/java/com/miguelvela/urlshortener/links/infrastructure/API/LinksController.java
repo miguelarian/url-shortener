@@ -47,7 +47,7 @@ public class LinksController {
     @PostMapping("/links")
     public ResponseEntity<Link> createLink(@RequestBody Link newLink) {
 
-        Link linkCreated = this.linksService.addLink(newLink.getUrl(), newLink.getLinkId());
+        Link linkCreated = this.linksService.addLink(newLink.getUrl());
 
         return ResponseEntity
                 .created(URI.create("/links/" + linkCreated.getLinkId()))

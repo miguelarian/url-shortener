@@ -37,7 +37,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
                 .orElse(null);
 
         if(linkVO != null) {
-            return new Link(linkVO.getUrl(), linkVO.getLinkId());
+            return new Link(linkVO.getUrl());
         }
 
         return null;
@@ -51,6 +51,6 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     }
 
     private Link mapToDomain(LinkVO linkVO) {
-        return new Link(linkVO.getUrl(), linkVO.getLinkId());
+        return new Link(linkVO.getUrl());
     }
 }
