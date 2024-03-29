@@ -3,6 +3,7 @@ package com.miguelvela.urlshortener.links.application;
 import com.miguelvela.urlshortener.links.domain.Link;
 import com.miguelvela.urlshortener.links.domain.LinksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 public class LinksServiceImpl implements LinksService {
 
     @Autowired
+    @Qualifier("MySqlLinksRepository")
     private LinksRepository linksRepository;
 
     @Override
