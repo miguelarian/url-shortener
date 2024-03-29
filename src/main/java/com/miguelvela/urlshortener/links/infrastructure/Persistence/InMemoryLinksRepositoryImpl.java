@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Repository
+@Repository("InMemoryLinksRepository")
 public class InMemoryLinksRepositoryImpl implements LinksRepository {
 
     private final List<LinkVO> inMemoryLinks = new ArrayList<>(Arrays.asList(
@@ -37,7 +37,7 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
                 .orElse(null);
 
         if(linkVO != null) {
-            return mapToDomain(linkVO);
+            return this.mapToDomain(linkVO);
         }
 
         return null;
@@ -47,10 +47,6 @@ public class InMemoryLinksRepositoryImpl implements LinksRepository {
     public Link create(Link newLink) {
         LinkVO newLinkVO = new LinkVO(newLink.getUrl(), newLink.getUrlHash());
         this.inMemoryLinks.add(newLinkVO);
-        return mapToDomain(newLinkVO);
-    }
-
-    private Link mapToDomain(LinkVO linkVO) {
-        return new Link(linkVO.getUrl(), linkVO.getUrlHash());
+        return this.mapToDomain(newLinkVO);
     }
 }
