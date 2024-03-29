@@ -24,11 +24,19 @@ public class LinksServiceImpl implements LinksService {
     @Override
     public Link getByUrlHash(String urlHash) {
 
+        if(urlHash == null || urlHash.isEmpty()){
+            return null;
+        }
+
         return linksRepository.getByUrlHash(urlHash);
     }
 
     @Override
     public Link addLink(String url) {
+        if(url == null || url.isEmpty()){
+            return null;
+        }
+
         Link newLink = new Link(url);
         return this.linksRepository.create(newLink);
     }
