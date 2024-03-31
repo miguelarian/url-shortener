@@ -2,6 +2,7 @@ package com.miguelvela.urlshortener.links.application;
 
 import com.miguelvela.urlshortener.links.domain.Link;
 import com.miguelvela.urlshortener.links.domain.LinksRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class LinksServiceImpl implements LinksService {
     }
 
     @Override
+    @Transactional
     public Link addLink(String url) {
         if(url == null || url.isEmpty()){
             return null;

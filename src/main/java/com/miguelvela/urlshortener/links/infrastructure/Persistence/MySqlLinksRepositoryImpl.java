@@ -4,11 +4,9 @@ import com.miguelvela.urlshortener.links.domain.Link;
 import com.miguelvela.urlshortener.links.domain.LinksRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository("MySqlLinksRepository")
 public class MySqlLinksRepositoryImpl implements LinksRepository {
@@ -38,7 +36,6 @@ public class MySqlLinksRepositoryImpl implements LinksRepository {
     }
 
     @Override
-    @Transactional
     public Link create(Link newLink) {
         LinkVO newLinkVO = new LinkVO(newLink.getUrl(), newLink.getUrlHash());
         this.entityManager.persist(newLinkVO);
