@@ -21,7 +21,7 @@ public class MySqlLinksRepositoryImpl implements LinksRepository {
                 .getResultList()
                 .stream()
                 .map(this::mapToDomain)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -32,7 +32,8 @@ public class MySqlLinksRepositoryImpl implements LinksRepository {
                     + "WHERE l.urlHash = :urlHash", LinkVO.class)
                 .setParameter("urlHash", urlHash)
                 .getResultList();
-        return results.isEmpty() ? null : mapToDomain(results.get(0));
+
+        return results.isEmpty() ? null : mapToDomain(results.getFirst());
     }
 
     @Override
