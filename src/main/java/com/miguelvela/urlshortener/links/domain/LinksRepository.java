@@ -10,6 +10,9 @@ public interface LinksRepository {
     Link create(Link newLink);
 
     default Link mapToDomain(LinkVO linkVO) {
-        return new Link(linkVO.getUrl(), linkVO.getUrlHash());
+        return new Link(
+                linkVO.getId(),
+                linkVO.getUrl(),
+                linkVO.getUrlHash());
     }
 }

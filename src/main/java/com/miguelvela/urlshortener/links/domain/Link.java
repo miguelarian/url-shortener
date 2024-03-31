@@ -1,5 +1,6 @@
 package com.miguelvela.urlshortener.links.domain;
 public class Link {
+    private long id;
     private String url;
     private String urlHash;
 
@@ -10,9 +11,10 @@ public class Link {
         this.urlHash = DEFAULT_URL_HASH;
     }
 
-    public Link(String url, String urlHash) {
+    public Link(long id, String url, String urlHash) {
         this.url = url;
         this.urlHash = urlHash;
+        this.id = id;
     }
 
     public String getUrl() {
@@ -34,6 +36,14 @@ public class Link {
         }
 
         return this.urlHash;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     private String calculateUrlHash() {
