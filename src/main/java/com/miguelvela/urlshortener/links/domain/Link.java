@@ -31,8 +31,16 @@ public class Link {
 
     public String getUrlHash() {
 
-        if (this.urlHash.equals(DEFAULT_URL_HASH)) {
-            this.urlHash = this.calculateUrlHash();
+        try {
+            if (this.urlHash.equals(DEFAULT_URL_HASH)) {
+                this.urlHash = this.calculateUrlHash();
+            }
+        }
+        catch(LinkHashGenerationException ex){
+            String errorMessage = String.format("It was not possible to generate the link hash for the link: {0}" + this.id);
+            System.err.println(errorMessage);
+            System.err.println(ex.getMessage());
+            return null;
         }
 
         return this.urlHash;
@@ -46,12 +54,11 @@ public class Link {
         this.id = id;
     }
 
-    private String calculateUrlHash() {
+    private String calculateUrlHash() throws LinkHashGenerationException {
 
         if (this.url.isEmpty())
         {
-            // TODO: This should throw an exception
-            return null;
+            throw new LinkHashGenerationException("The link URL is null");
         }
 
         return String.valueOf(this.url.hashCode());
