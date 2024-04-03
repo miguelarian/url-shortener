@@ -33,7 +33,7 @@ public class Link {
 
         try {
             if (this.urlHash.equals(DEFAULT_URL_HASH)) {
-                this.urlHash = this.calculateUrlHash();
+                this.urlHash = this.generateUrlHash();
             }
         }
         catch(LinkHashGenerationException ex){
@@ -54,7 +54,7 @@ public class Link {
         this.id = id;
     }
 
-    private String calculateUrlHash() throws LinkHashGenerationException {
+    private String generateUrlHash() throws LinkHashGenerationException {
 
         if (this.url.isEmpty())
         {
