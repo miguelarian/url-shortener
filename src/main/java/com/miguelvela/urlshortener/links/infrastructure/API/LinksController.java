@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
+@RequestMapping("/api")
 public class LinksController {
     @Autowired
     private LinksService linksService;
