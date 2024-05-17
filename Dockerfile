@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # Copy the packaged JAR file into the container at /app
-COPY target/urlshortener-0.1.1.jar /app/urlshortener.jar
+COPY target/urlshortener-0.1.6.jar /app/urlshortener.jar
 
 # Expose the port that the application will run on
 EXPOSE 8080
